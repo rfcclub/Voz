@@ -1,0 +1,40 @@
+﻿<phone:PhoneApplicationPage x:Class="Voz.AppPage.PageThreadID"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                            FontSize="{StaticResource PhoneFontSizeNormal}"
+                            Foreground="{StaticResource PhoneForegroundBrush}"
+                            Orientation="Portrait"
+                            SupportedOrientations="Portrait"
+                            shell:SystemTray.IsVisible="True"
+                            mc:Ignorable="d">
+
+	<Grid x:Name="LayoutRoot"
+	      Background="Transparent">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="70" />
+			<RowDefinition Height="100" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Border Grid.Row="0">
+			<TextBlock VerticalAlignment="Center"
+			           FontFamily="Segoe WP"
+			           FontSize="36"
+			           Text="Nhập ID"
+			           TextAlignment="Center" />
+		</Border>
+		<Border Grid.Row="1"
+		        BorderBrush="{StaticResource AccentColor}">
+			<TextBox Name="textBox_IdInput"
+			         VerticalAlignment="Center"
+			         FontFamily="Segoe UI WP"
+			         FontSize="36"
+			         KeyDown="textBox_IdInput_KeyDown" />
+		</Border>
+	</Grid>
+
+</phone:PhoneApplicationPage>

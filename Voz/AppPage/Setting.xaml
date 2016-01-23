@@ -1,0 +1,173 @@
+﻿<phone:PhoneApplicationPage x:Class="Voz.AppPage.Setting"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                            FontSize="{StaticResource PhoneFontSizeNormal}"
+                            Foreground="{StaticResource PhoneForegroundBrush}"
+                            Loaded="PhoneApplicationPage_Loaded"
+                            Orientation="Portrait"
+                            SupportedOrientations="Portrait"
+                            shell:SystemTray.IsVisible="True"
+                            mc:Ignorable="d">
+	<UserControl.Resources>
+		<Style x:Key="Switch"
+		       TargetType="toolkit:ToggleSwitch">
+			<Setter Property="FontSize" Value="28" />
+			<Setter Property="Margin" Value="-12" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="SwitchForeground" Value="{StaticResource AccentColor}" />
+			<Setter Property="Foreground" Value="{StaticResource TextColor}" />
+		</Style>
+	</UserControl.Resources>
+	<ScrollViewer Background="{StaticResource BackgroundColor}">
+		<Grid x:Name="LayoutRoot"
+		      Margin="15,0,15,0"
+		      Background="{StaticResource BackgroundColor}">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="80" />
+				<RowDefinition Height="80" />
+				<RowDefinition Height="80" />
+				<RowDefinition Height="80" />
+				<RowDefinition Height="80" />
+				<RowDefinition Height="130" />
+				<RowDefinition Height="80" />
+				<RowDefinition Height="80" />
+				<RowDefinition Height="80" />
+				<RowDefinition Height="80" />
+				<RowDefinition Height="80" />
+				<RowDefinition Height="80" />
+				<RowDefinition Height="80" />
+				<RowDefinition Height="80" />
+			</Grid.RowDefinitions>
+			<TextBox Name="textBoxAccount"
+			         Grid.Row="0"
+			         Background="LightGray"
+			         FontFamily="Segoe UI"
+			         FontSize="28"
+			         Foreground="Black"
+			         GotFocus="textBox_GotFocus" />
+			<PasswordBox Name="passwordBox"
+			             Grid.Row="1"
+			             Background="LightGray"
+			             FontFamily="Segoe UI"
+			             FontSize="28"
+			             Foreground="Black"
+			             GotFocus="passwordBox_GotFocus"
+			             PasswordChar="*" />
+			<CheckBox Name="checkBoxRememberLogin"
+			          Grid.Row="2"
+			          HorizontalAlignment="Center"
+			          Background="{StaticResource AccentColor}"
+			          BorderBrush="{StaticResource TextColor}"
+			          Content="Nhớ mật khẩu"
+			          FontFamily="Segoe WP Light"
+			          FontSize="28"
+			          Foreground="{StaticResource TextColor}"
+			          IsChecked="True" />
+			<Button Name="buttonLogin"
+			        Grid.Row="3"
+			        Width="300"
+			        BorderBrush="{StaticResource TextColor}"
+			        Content="Đăng nhập"
+			        FontFamily="Segoe WP Light"
+			        FontSize="24"
+			        Foreground="{StaticResource TextColor}"
+			        Tap="buttonLogin_Tap" />
+			<Button Name="buttonLogout"
+			        Grid.Row="4"
+			        Width="300"
+			        BorderBrush="{StaticResource TextColor}"
+			        Content="Thoát"
+			        FontFamily="Segoe WP Light"
+			        FontSize="24"
+			        Foreground="{StaticResource TextColor}"
+			        Tap="buttonLogout_Tap" />
+			<Grid Grid.Row="5">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="80" />
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+				<toolkit:ToggleSwitch Name="toggleSwitchDarkTheme"
+				                      Checked="toggleSwitchDarkTheme_Checked"
+				                      Content="Dark Theme"
+				                      Style="{StaticResource Switch}"
+				                      Unchecked="toggleSwitchDarkTheme_Unchecked" />
+				<TextBlock Grid.Row="1"
+				           VerticalAlignment="Center"
+				           FontFamily="Segoe WP Light"
+				           FontSize="28"
+				           Foreground="{StaticResource TextColor}"
+				           Text="(Khởi động lại app sau khi đổi theme)" />
+			</Grid>
+			<Button Name="buttonChangeColor"
+			        Grid.Row="6"
+			        Width="300"
+			        BorderBrush="{StaticResource TextColor}"
+			        Content="Đổi màu"
+			        FontFamily="Segoe WP Light"
+			        FontSize="24"
+			        Foreground="{StaticResource TextColor}"
+			        Tap="buttonChangeColor_Tap" />
+			<toolkit:ToggleSwitch Name="toggleSwitchJoinDate"
+			                      Grid.Row="7"
+			                      Checked="toggleSwitchJoinDate_Checked"
+			                      Content="Hiện Join Date"
+			                      Style="{StaticResource Switch}"
+			                      Unchecked="toggleSwitchJoinDate_Unchecked" />
+			<toolkit:ToggleSwitch Name="toggleSwitchLocation"
+			                      Grid.Row="8"
+			                      Checked="toggleSwitchLocation_Checked"
+			                      Content="Hiện Location"
+			                      Style="{StaticResource Switch}"
+			                      Unchecked="toggleSwitchLocation_Unchecked" />
+			<toolkit:ToggleSwitch Name="toggleSwitchPosts"
+			                      Grid.Row="9"
+			                      Checked="toggleSwitchPosts_Checked"
+			                      Content="Hiện số Post"
+			                      Style="{StaticResource Switch}"
+			                      Unchecked="toggleSwitchPosts_Unchecked" />
+			<toolkit:ToggleSwitch Name="toggleSwitchEmo"
+			                      Grid.Row="10"
+			                      Checked="toggleSwitchEmo_Checked"
+			                      Content="Hiện Emo (có thể lỗi)"
+			                      Style="{StaticResource Switch}"
+			                      Unchecked="toggleSwitchEmo_Unchecked" />
+			<toolkit:ToggleSwitch Name="toggleSwitchAvatar"
+			                      Grid.Row="11"
+			                      Checked="toggleSwitchAvatar_Checked"
+			                      Content="Hiện Avatar"
+			                      Style="{StaticResource Switch}"
+			                      Unchecked="toggleSwitchAvatar_Unchecked" />
+			<Border Grid.Row="12">
+				<TextBlock VerticalAlignment="Center"
+				           FontFamily="Segoe WP Light"
+				           FontSize="26"
+				           Foreground="{StaticResource TextColor}"
+				           Text="Tên máy:" />
+			</Border>
+			<Border Grid.Row="13">
+				<TextBox Name="textBoxDevice"
+				         VerticalAlignment="Center"
+				         Background="LightGray"
+				         FontFamily="Segoe UI"
+				         FontSize="26"
+				         Foreground="Black"
+				         GotFocus="textBox_GotFocus" />
+			</Border>
+		</Grid>
+	</ScrollViewer>
+	<phone:PhoneApplicationPage.ApplicationBar>
+		<shell:ApplicationBar IsMenuEnabled="False"
+		                      Mode="Default">
+			<shell:ApplicationBarIconButton Click="SaveClick"
+			                                IconUri="/Assets/AppBarIcon/save.png"
+			                                Text="Lưu" />
+		</shell:ApplicationBar>
+	</phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>

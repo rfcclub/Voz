@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2014/deployment" AppPlatformVersion="8.1">
+  <DefaultLanguage xmlns="" code="vi-VN" />
+  <Languages xmlns="">
+    <Language code="vi-VN" />
+  </Languages>
+  <App xmlns="" ProductID="{4624ad5f-f453-44a9-90e4-3a8990e23b94}" Title="Voz for Windows Phone" RuntimeType="Silverlight" Version="1.4.7.0" Genre="apps.normal" Author="CKhang" Description="**This application is for Vietnamese users only.**&#xD;&#xA;Voz for Windows Phone là ứng dụng để cập nhật những chủ đề từ diễn đàn vozForums dành cho Windows Phone 8.&#xD;&#xA;Ứng dụng sẽ được cập nhật thêm các tính năng mới.&#xD;&#xA;Chúc vui vẻ!" SDOptOut="false" BackUpOptOut="false" Publisher="CKhang" PublisherID="{9c389b65-0cbb-4856-9683-81b368edc915}">
+    <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
+    <Capabilities>
+      <Capability Name="ID_CAP_NETWORKING" />
+      <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
+    </Capabilities>
+    <Tasks>
+      <DefaultTask Name="_default" NavigationPage="/AppPage/Homepage.xaml" ActivationPolicy="Resume" />
+    </Tasks>
+    <Tokens>
+      <PrimaryToken TokenID="VozToken" TaskName="_default">
+        <TemplateFlip>
+          <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</SmallImageURI>
+          <Count>0</Count>
+          <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</BackgroundImageURI>
+          <Title>Voz</Title>
+          <BackContent>
+          </BackContent>
+          <BackBackgroundImageURI>
+          </BackBackgroundImageURI>
+          <BackTitle>
+          </BackTitle>
+          <DeviceLockImageURI>
+          </DeviceLockImageURI>
+          <HasLarge>
+          </HasLarge>
+        </TemplateFlip>
+      </PrimaryToken>
+    </Tokens>
+    <ScreenResolutions>
+      <ScreenResolution Name="ID_RESOLUTION_WVGA" />
+      <ScreenResolution Name="ID_RESOLUTION_WXGA" />
+      <ScreenResolution Name="ID_RESOLUTION_HD720P" />
+    </ScreenResolutions>
+  </App>
+</Deployment>

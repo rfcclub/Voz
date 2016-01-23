@@ -1,0 +1,237 @@
+﻿<phone:PhoneApplicationPage x:Class="Voz.AppPage.Thread"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:msptool="clr-namespace:MSPToolkit.Controls;assembly=MSPToolkit"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                            FontSize="{StaticResource PhoneFontSizeNormal}"
+                            Foreground="{StaticResource PhoneForegroundBrush}"
+                            Orientation="Portrait"
+                            SupportedOrientations="Portrait"
+                            shell:SystemTray.IsVisible="True"
+                            mc:Ignorable="d">
+	<UserControl.Resources>
+		<Style x:Key="buttonPage"
+		       TargetType="Button">
+			<Setter Property="FontSize" Value="20" />
+			<Setter Property="BorderThickness" Value="1" />
+			<Setter Property="BorderBrush" Value="{StaticResource AccentColor}" />
+			<Setter Property="MinWidth" Value="0" />
+			<Setter Property="MinHeight" Value="0" />
+			<Setter Property="HorizontalAlignment" Value="Stretch" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="Foreground" Value="{StaticResource TextColor}" />
+		</Style>
+		<Style x:Key="textBoxPage"
+		       TargetType="TextBox">
+			<Setter Property="InputScope" Value="Text" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="BorderBrush" Value="{StaticResource AccentColor}" />
+			<Setter Property="Background" Value="{StaticResource AccentColor}" />
+			<Setter Property="Foreground" Value="{StaticResource TextColor}" />
+			<Setter Property="FontSize" Value="20" />
+			<Setter Property="TextAlignment" Value="Center" />
+			<Setter Property="BorderThickness" Value="0" />
+		</Style>
+	</UserControl.Resources>
+	<Grid Background="{StaticResource BackgroundColor}">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="40" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<TextBlock Name="textBlockTitle"
+		           Grid.Row="0"
+		           FontSize="24"
+		           Foreground="{StaticResource TextColor}"
+		           Tap="RefreshClick"
+		           Text="{Binding threadTitle}"
+		           TextWrapping="NoWrap" />
+		<ScrollViewer Name="scrollViewerMain"
+		              Grid.Row="1"
+		              VerticalScrollBarVisibility="Auto">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="70" />
+					<RowDefinition Height="*" />
+					<RowDefinition Height="70" />
+				</Grid.RowDefinitions>
+				<Grid Grid.Row="0"
+				      Background="{StaticResource AccentColor}">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="80" />
+						<ColumnDefinition Width="80" />
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="80" />
+						<ColumnDefinition Width="80" />
+					</Grid.ColumnDefinitions>
+					<Button Grid.Column="0"
+					        Content="&lt;&lt;"
+					        Style="{StaticResource buttonPage}"
+					        Tap="FirstPageTap" />
+					<Button Grid.Column="1"
+					        Content="&lt;"
+					        Style="{StaticResource buttonPage}"
+					        Tap="PreviousPageTap" />
+					<TextBox Name="textBoxCurrentPage"
+					         Grid.Column="2"
+					         GotFocus="textBoxPageGotFocus"
+					         KeyDown="MovePage"
+					         LostFocus="textBoxPageLostFocus"
+					         Style="{StaticResource textBoxPage}" />
+					<Button Grid.Column="3"
+					        Content="&gt;"
+					        Style="{StaticResource buttonPage}"
+					        Tap="NextPageTap" />
+					<Button Grid.Column="4"
+					        Content="&gt;&gt;"
+					        Style="{StaticResource buttonPage}"
+					        Tap="LastPageTap" />
+				</Grid>
+				<ListBox Name="listBoxPosts"
+				         Grid.Row="1"
+				         ScrollViewer.VerticalScrollBarVisibility="Disabled">
+					<ListBox.ItemContainerStyle>
+						<Style TargetType="ListBoxItem">
+							<Setter Property="HorizontalContentAlignment" Value="Stretch">
+							</Setter>
+						</Style>
+					</ListBox.ItemContainerStyle>
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<Grid>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="30" />
+									<RowDefinition Height="Auto" />
+									<RowDefinition Height="*" />
+									<RowDefinition Height="60" />
+								</Grid.RowDefinitions>
+								<Border BorderBrush="Gray">
+									<Grid Background="{StaticResource AccentColor}">
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="400" />
+											<ColumnDefinition Width="*" />
+										</Grid.ColumnDefinitions>
+										<TextBlock Grid.Column="0"
+										           Foreground="{StaticResource TextColor}"
+										           Text="{Binding postTime}"
+										           TextWrapping="Wrap" />
+										<TextBlock Grid.Column="1"
+										           Foreground="{StaticResource TextColor}"
+										           Text="{Binding postOrder}"
+										           TextWrapping="Wrap" />
+									</Grid>
+								</Border>
+								<Border Grid.Row="1"
+								        BorderBrush="{StaticResource AccentColor}"
+								        BorderThickness="0,0,0,2">
+									<Grid Background="{StaticResource BackgroundColor}">
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="60" />
+											<ColumnDefinition Width="Auto"
+											                  MinWidth="100" />
+											<ColumnDefinition Width="*" />
+										</Grid.ColumnDefinitions>
+										<Image Grid.Column="0"
+										       Width="60"
+										       Height="60"
+										       HorizontalAlignment="Left"
+										       Source="{Binding avaLink,
+										                        TargetNullValue={x:Null}}"
+										       Stretch="Uniform" />
+										<TextBlock Grid.Column="1"
+										           HorizontalAlignment="Left"
+										           Foreground="{StaticResource TextColor}"
+										           Text="{Binding userName}"
+										           TextWrapping="Wrap" />
+										<StackPanel Grid.Column="2"
+										            HorizontalAlignment="Right"
+										            Orientation="Vertical">
+											<TextBlock Foreground="{StaticResource TextColor}"
+											           Text="{Binding userJoinDate}"
+											           TextWrapping="Wrap" />
+											<TextBlock Foreground="{StaticResource TextColor}"
+											           Text="{Binding userPosts}"
+											           TextWrapping="Wrap" />
+											<TextBlock Foreground="{StaticResource TextColor}"
+											           Text="{Binding userLocation}"
+											           TextWrapping="Wrap" />
+										</StackPanel>
+									</Grid>
+								</Border>
+								<msptool:HTMLViewer Grid.Row="2"
+								                    Height="Auto"
+								                    Foreground="{StaticResource TextColor}"
+								                    Html="{Binding htmlContent}"
+								                    HyperlinkClick="HyperLinkClicked"
+								                    NavigaionPolitic="Manual"
+								                    ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+								<Button Grid.Row="3"
+								        Width="200"
+								        HorizontalAlignment="Left"
+								        BorderBrush="{StaticResource AccentColor}"
+								        BorderThickness="0,2,0,0"
+								        Content="Quote"
+								        FontSize="18"
+								        Foreground="{StaticResource TextColor}"
+								        Tag="{Binding postId}"
+								        Tap="QuoteTap" />
+							</Grid>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+				<Grid Grid.Row="2"
+				      Background="{StaticResource AccentColor}">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="80" />
+						<ColumnDefinition Width="80" />
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="80" />
+						<ColumnDefinition Width="80" />
+					</Grid.ColumnDefinitions>
+					<Button Grid.Column="0"
+					        Content="&lt;&lt;"
+					        Style="{StaticResource buttonPage}"
+					        Tap="FirstPageTap" />
+					<Button Grid.Column="1"
+					        Content="&lt;"
+					        Style="{StaticResource buttonPage}"
+					        Tap="PreviousPageTap" />
+					<TextBox Name="textBoxCurrentPageBottom"
+					         Grid.Column="2"
+					         GotFocus="textBoxPageGotFocus"
+					         KeyDown="MovePage"
+					         LostFocus="textBoxPageLostFocus"
+					         Style="{StaticResource textBoxPage}" />
+					<Button Grid.Column="3"
+					        Content="&gt;"
+					        Style="{StaticResource buttonPage}"
+					        Tap="NextPageTap" />
+					<Button Grid.Column="4"
+					        Content="&gt;&gt;"
+					        Style="{StaticResource buttonPage}"
+					        Tap="LastPageTap" />
+				</Grid>
+			</Grid>
+		</ScrollViewer>
+	</Grid>
+	<phone:PhoneApplicationPage.ApplicationBar>
+		<shell:ApplicationBar IsMenuEnabled="True"
+		                      Mode="Default">
+			<shell:ApplicationBarIconButton Click="RefreshClick"
+			                                IconUri="/Assets/AppBarIcon/refresh.png"
+			                                Text="Refresh" />
+			<shell:ApplicationBarIconButton Click="BookmarkClick"
+			                                IconUri="/Assets/AppBarIcon/fav.png"
+			                                Text="Favs" />
+			<shell:ApplicationBarIconButton Click="AddBookmarkClick"
+			                                IconUri="/Assets/AppBarIcon/favadd.png"
+			                                Text="Add favs" />
+			<shell:ApplicationBarIconButton Click="ReplyClick"
+			                                IconUri="/Assets/AppBarIcon/upload.png"
+			                                Text="Reply" />
+		</shell:ApplicationBar>
+	</phone:PhoneApplicationPage.ApplicationBar>
+</phone:PhoneApplicationPage>

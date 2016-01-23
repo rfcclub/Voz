@@ -1,0 +1,53 @@
+﻿<phone:PhoneApplicationPage x:Class="Voz.AppPage.About"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                            FontSize="{StaticResource PhoneFontSizeNormal}"
+                            Foreground="{StaticResource PhoneForegroundBrush}"
+                            Orientation="Portrait"
+                            SupportedOrientations="Portrait"
+                            shell:SystemTray.IsVisible="True"
+                            mc:Ignorable="d">
+
+	<Grid Background="{StaticResource BackgroundColor}">
+		<Grid Margin="20,30,20,0"
+		      Background="{StaticResource BackgroundColor}">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="70" />
+				<RowDefinition Height="280" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			<TextBlock Grid.Row="0"
+			           FontFamily="Segoe WP"
+			           FontSize="40"
+			           Foreground="{StaticResource AccentColor}"
+			           Text="Voz for Windows Phone" />
+			<Image Grid.Row="1"
+			       Source="/Voz;component/Assets/Image/About.png" />
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0"
+				           FontFamily="Segoe WP Light"
+				           FontSize="28"
+						   TextAlignment="Center"
+				           Foreground="{StaticResource TextColor}"
+				           Text="by CKhang" />
+                <TextBlock Name="textBlockVersion"
+				           Grid.Row="1"
+				           VerticalAlignment="Center"
+				           FontFamily="Segoe WP Light"
+				           FontSize="28"
+				           Foreground="{StaticResource AccentColor}"
+				           Text="Version: " />
+            </Grid>
+        </Grid>
+	</Grid>
+
+</phone:PhoneApplicationPage>
